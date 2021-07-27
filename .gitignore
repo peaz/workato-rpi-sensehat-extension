@@ -1,6 +1,5 @@
 .gradle
 .vscode
-.settings
 .DS_Store
 build/classes
 build/tmp
