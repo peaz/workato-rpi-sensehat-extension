@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2021 Ken Ng, Inc. All rights reserved.
+ * Created by Ken Ng on 07/27/2021
+ * Uses rpi.sensehat.api - https://github.com/cinci/rpi-sense-hat-java
  */
 
 package com.knyc.opaextension;
