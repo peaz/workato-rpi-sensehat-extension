@@ -73,7 +73,7 @@ public class SenseHatExtension {
         String message = (String) body.get("message");
         String messageColor = (String) body.get("messageColor");
         String backgroundColor = (String) body.get("backgroundColor");
-        float scrollSpeed = new Float(0.2f);
+        float scrollSpeed = new Float(0.1f);
 
         SenseHat senseHat = new SenseHat();        
         senseHat.ledMatrix.showMessage(message,scrollSpeed,Color.get(messageColor),Color.get(backgroundColor));
