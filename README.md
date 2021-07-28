@@ -1,5 +1,9 @@
 Workato Raspberry Pi SenseHAT Extension to support integration with the SenseHAT sensors and LED Matrix.
 
+## Credits
+
+This project uses the [Java Wrapper for Raspberry Pi Sense Hat](https://github.com/cinci/rpi-sense-hat-java) extensively.
+
 ## Requriements
 You will of course need a Rapsberry Pi and the Sense HAT. I've tested this with a Raspbery Pi 3.
 
@@ -11,7 +15,6 @@ sudo apt-get update
 sudo apt-get install sense-hat
 sudo reboot
 ```
-
 
 ## Building extension
 
