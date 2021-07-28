@@ -1,9 +1,9 @@
 Workato Raspberry Pi SenseHAT Extension to support integration with the SenseHAT sensors and LED Matrix.
 
 ## Requriements
-You will of course need a Rapsberry Pi and the Sense HAT.
+You will of course need a Rapsberry Pi and the Sense HAT. I've tested this with a Raspbery Pi 3.
 
-1. Install the latest Raspbian on Raspberry Pi.
+1. Install the latest Raspbian on the Raspberry Pi.
 2. Install the necessary Sense HAT libraries
 
 ```sh
@@ -11,6 +11,7 @@ sudo apt-get update
 sudo apt-get install sense-hat
 sudo reboot
 ```
+
 
 ## Building extension
 
@@ -39,3 +40,11 @@ extensions:
    sensehat:
       controllerClass: com.knyc.opaextension.SenseHatExtension
 ```
+
+## Custom SDK for the extension
+
+The corresponding custom SDK can be found here in this repo as well.
+
+Link: [raspberry-pi-sensehat-sdk.rb](custom-sdk/raspberry-pi-sensehat-sdk.rb)
+
+Create a new Custom SDK in your Workato workspace and use it with the OPA extension.
