@@ -28,10 +28,15 @@
     
     environmentalSensor: {
       title: 'Get environmental sensor reading',
-      description: 'Get humidity, temperature and pressure reading from the SenseHAT enviromental sensor.',
+      description: 'Get humidity, temperature (from two sensors) and pressure reading from the SenseHAT enviromental sensor.',
       
       output_fields: lambda do |object_definitions| 
-        [{name: 'humidity', type: :float}, {name: 'temperature', type: :float}, {name: 'pressure', type: :float}]
+        [
+          {name: 'humidity', type: :float}, 
+          {name: 'temperature', type: :float},
+          {name: 'temperatureFromPressure', type: :float},
+          {name: 'pressure', type: :float}
+        ]
       end,
       
       execute: lambda do |connection|

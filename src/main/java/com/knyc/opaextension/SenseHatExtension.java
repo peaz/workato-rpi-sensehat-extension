@@ -59,9 +59,11 @@ public class SenseHatExtension {
         SenseHat senseHat = new SenseHat();
         float humidity = senseHat.environmentalSensor.getHumidity();
         float temperature = senseHat.environmentalSensor.getTemperature();
+        float temperatureFromPressure = senseHat.environmentalSensor.getTemperatureFromPressure();
         float pressure = senseHat.environmentalSensor.getPressure();
         responseData.put("humidity", humidity);
         responseData.put("temperature", temperature);
+        responseData.put("temperatureFromPressure", temperatureFromPressure);
         responseData.put("pressure", pressure);
         return responseData;
     }
