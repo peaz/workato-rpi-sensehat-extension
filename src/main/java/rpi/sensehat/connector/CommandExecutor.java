@@ -10,4 +10,5 @@ public interface CommandExecutor {
     String lineSeparator = System.getProperty("line.separator");
 
     CommandResult execute(Command command, String... args);
+    CommandResult executeLED(String lowLight, String rotation, Command command, String... args);
 }

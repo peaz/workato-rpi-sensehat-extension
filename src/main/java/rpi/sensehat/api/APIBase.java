@@ -7,6 +7,7 @@ import rpi.sensehat.connector.CommandExecutorFactory;
 
 /**
  * Created by jcincera on 22/06/2017.
+ * Updated by knyc on 02/08/2021 to include LED rotation and low light settings in the command executor
  */
 public abstract class APIBase {
 
@@ -19,4 +20,8 @@ public abstract class APIBase {
     protected CommandResult execute(Command command, String... args) {
         return commandExecutor.execute(command, args);
     }
+    protected CommandResult executeLED(String lowLight, String rotation, Command command, String... args) {
+        return commandExecutor.executeLED(lowLight, rotation, command, args);
+    }
+
 }

@@ -7,20 +7,17 @@ import rpi.sensehat.utils.PythonUtils;
 
 /**
  * Created by jcincera on 20/06/2017.
+ * Updated by knyc on 02/08/2021 to include LED rotation and low light settings in the APIs as this needs to be set in each Python code execution.
+ * Removed Rotation and LowLight API
  */
 public class LEDMatrix extends APIBase {
 
-    LEDMatrix() {
-    }
+    public final String lowLight;
+    public final String rotation;
 
-    /**
-     * Switch rotation/orientation of display
-     *
-     * @param rotation rotation angle
-     */
-    //todo probably doesn't work properly in Python core
-    public void setRotation(Rotation rotation) {
-        execute(Command.SET_ROTATION, rotation.getRotation()).checkEmpty();
+    public LEDMatrix(String lowLight, String rotation) {
+        this.lowLight = lowLight;
+        this.rotation = rotation;
     }
 
     /**
@@ -46,7 +43,7 @@ public class LEDMatrix extends APIBase {
         }
 
         matrix.deleteCharAt(matrix.length() - 1); // remove last ","
-        execute(Command.SET_PIXELS, matrix.toString()).checkEmpty();
+        executeLED(lowLight, rotation, Command.SET_PIXELS, matrix.toString()).checkEmpty();
     }
 
     /**
@@ -57,7 +54,7 @@ public class LEDMatrix extends APIBase {
      * @param color color
      */
     public void setPixel(Integer x, Integer y, Color color) {
-        execute(Command.SET_PIXEL,
+        executeLED(lowLight, rotation, Command.SET_PIXEL,
                 String.valueOf(x), String.valueOf(y),
                 color.r(), color.g(), color.b()).checkEmpty();
     }
@@ -75,7 +72,7 @@ public class LEDMatrix extends APIBase {
      * @param color color
      */
     public void clear(Color color) {
-        execute(Command.CLEAR_WITH_COLOR, color.r(), color.g(), color.b()).checkEmpty();
+        executeLED(lowLight, rotation, Command.CLEAR_WITH_COLOR, color.r(), color.g(), color.b()).checkEmpty();
     }
 
     /**
@@ -88,7 +85,7 @@ public class LEDMatrix extends APIBase {
             throw new IllegalArgumentException("Character: > ' < is not supported in message!");
         }
 
-        execute(Command.SHOW_MESSAGE, message).checkEmpty();
+        executeLED(lowLight, rotation, Command.SHOW_MESSAGE, message).checkEmpty();
     }
 
     /**
@@ -104,7 +101,7 @@ public class LEDMatrix extends APIBase {
             throw new IllegalArgumentException("Character: > ' < is not supported in message!");
         }
 
-        execute(Command.SHOW_MESSAGE_PARAMETRIZED,
+        executeLED(lowLight, rotation, Command.SHOW_MESSAGE_PARAMETRIZED,
                 message,
                 String.format("%.2f", scrollSpeed),
                 textColor.r(), textColor.g(), textColor.b(),
@@ -138,7 +135,7 @@ public class LEDMatrix extends APIBase {
             throw new IllegalArgumentException("Only one letter is supported!");
         }
 
-        execute(Command.SHOW_LETTER, letter).checkEmpty();
+        executeLED(lowLight, rotation, Command.SHOW_LETTER, letter).checkEmpty();
     }
 
     /**
@@ -149,19 +146,10 @@ public class LEDMatrix extends APIBase {
      * @param backColor   background color
      */
     public void showLetter(String letter, Color letterColor, Color backColor) {
-        execute(Command.SHOW_LETTER_PARAMETRIZED,
+        executeLED(lowLight, rotation, Command.SHOW_LETTER_PARAMETRIZED,
                 letter,
                 letterColor.r(), letterColor.g(), letterColor.b(),
                 backColor.r(), backColor.g(), backColor.b()).checkEmpty();
-    }
-
-    /**
-     * Set low light of matrix
-     *
-     * @param lowLight true/false
-     */
-    public void lowLight(boolean lowLight) {
-        execute(Command.LOW_LIGHT, PythonUtils.toBoolean(lowLight)).checkEmpty();
     }
 
     public void gamma() {

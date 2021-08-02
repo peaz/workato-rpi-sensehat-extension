@@ -33,7 +33,7 @@ public class SenseHatExtension {
 
         Map<String, Object> responseData = new HashMap<String, Object>();
         try {
-            SenseHat senseHat = new SenseHat();
+            SenseHat senseHat = new SenseHat(env.getProperty("ledLowLight"),env.getProperty("ledRotation"));
             senseHat.ledMatrix.showMessage("Hi!");
             responseData.put("status","success");                
         } catch (Exception e) {
@@ -46,7 +46,7 @@ public class SenseHatExtension {
     public @ResponseBody Map<String, Object> clearLED() throws Exception {
 
         Map<String, Object> responseData = new HashMap<String, Object>();
-        SenseHat senseHat = new SenseHat();
+        SenseHat senseHat = new SenseHat(env.getProperty("ledLowLight"),env.getProperty("ledRotation"));
         senseHat.ledMatrix.clear();
         responseData.put("status","LED cleared");                
         return responseData;
@@ -56,7 +56,7 @@ public class SenseHatExtension {
     public @ResponseBody Map<String, Object> readHumidity() throws Exception {
 
         Map<String, Object> responseData = new HashMap<String, Object>();
-        SenseHat senseHat = new SenseHat();
+        SenseHat senseHat = new SenseHat(env.getProperty("ledLowLight"),env.getProperty("ledRotation"));
         float humidity = senseHat.environmentalSensor.getHumidity();
         float temperature = senseHat.environmentalSensor.getTemperature();
         float temperatureFromPressure = senseHat.environmentalSensor.getTemperatureFromPressure();
@@ -77,7 +77,7 @@ public class SenseHatExtension {
         String backgroundColor = (String) body.get("backgroundColor");
         float scrollSpeed = new Float(0.1f);
 
-        SenseHat senseHat = new SenseHat();        
+        SenseHat senseHat = new SenseHat(env.getProperty("ledLowLight"),env.getProperty("ledRotation"));
         senseHat.ledMatrix.showMessage(message,scrollSpeed,Color.get(messageColor),Color.get(backgroundColor));
         senseHat.ledMatrix.clear();
         responseData.put("status","message displayed");        
@@ -92,7 +92,7 @@ public class SenseHatExtension {
         String letterColor = (String) body.get("letterColor");
         String backgroundColor = (String) body.get("backgroundColor");
         
-        SenseHat senseHat = new SenseHat();
+        SenseHat senseHat = new SenseHat(env.getProperty("ledLowLight"),env.getProperty("ledRotation"));
         senseHat.ledMatrix.showLetter(letter,Color.get(letterColor),Color.get(backgroundColor));
         responseData.put("status","letter displayed");        
         return responseData;
@@ -104,7 +104,7 @@ public class SenseHatExtension {
         Map<String, Object> responseData = new HashMap<String, Object>();
         String color = (String) body.get("color");
 
-        SenseHat senseHat = new SenseHat();
+        SenseHat senseHat = new SenseHat(env.getProperty("ledLowLight"),env.getProperty("ledRotation"));
         senseHat.ledMatrix.clear(Color.get(color));
         responseData.put("status","Color displayed");                
         return responseData;
@@ -114,7 +114,7 @@ public class SenseHatExtension {
     public @ResponseBody Map<String, Object> displayStopIcon() throws Exception {
 
         Map<String, Object> responseData = new HashMap<String, Object>();
-        SenseHat senseHat = new SenseHat();
+        SenseHat senseHat = new SenseHat(env.getProperty("ledLowLight"),env.getProperty("ledRotation"));
 
         final Color X = Color.RED;
         final Color O = Color.WHITE;
@@ -139,7 +139,7 @@ public class SenseHatExtension {
     public @ResponseBody Map<String, Object> displayCheckIcon() throws Exception {
 
         Map<String, Object> responseData = new HashMap<String, Object>();
-        SenseHat senseHat = new SenseHat();
+        SenseHat senseHat = new SenseHat(env.getProperty("ledLowLight"),env.getProperty("ledRotation"));
 
         final Color X = Color.GREEN;
         final Color O = Color.WHITE;
