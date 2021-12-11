@@ -30,7 +30,7 @@ public class SimpleCommandExecutor implements CommandExecutor {
 
             // Call
             System.out.println("Command: " + command.name());
-            ProcessBuilder pb = new ProcessBuilder("python", "-c", completeCommand);
+            ProcessBuilder pb = new ProcessBuilder("python3", "-c", completeCommand);
             pb.redirectErrorStream(true);
             Process p = pb.start();
 
@@ -70,7 +70,7 @@ public class SimpleCommandExecutor implements CommandExecutor {
 
             // Call
             System.out.println("Command: " + command.name());
-            ProcessBuilder pb = new ProcessBuilder("python", "-c", completeCommand);
+            ProcessBuilder pb = new ProcessBuilder("python3", "-c", completeCommand);
             pb.redirectErrorStream(true);
             Process p = pb.start();
 

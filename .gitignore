@@ -4,3 +4,5 @@
 .settings
 build/classes
 build/tmp
+bin
+.project
